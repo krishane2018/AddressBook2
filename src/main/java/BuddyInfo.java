@@ -1,13 +1,30 @@
+import javax.persistence.*;
+
+@Entity
 public class BuddyInfo {
 
-    private String name, address, phone;
+    private int id;
+
+    private String name;
+
+    private String address;
+
+    private String phone;
+
+    private AddressBook addBook;
 
     /* Constructor
      */
-    public BuddyInfo(String name, String address, String phone) {
+    public BuddyInfo(String name, String address, String phone, int id, AddressBook addBook) {
         this.name = name;
         this.address = address;
         this.phone = phone;
+        this.addBook = addBook;
+        this.id = id;
+    }
+
+    public BuddyInfo() {
+        this("", "", "", 0, new AddressBook());
     }
 
     public String getName() {
@@ -34,6 +51,25 @@ public class BuddyInfo {
         this.phone = phone;
     }
 
+    @Id
+    @GeneratedValue
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @ManyToOne
+    public AddressBook getAddBook() {
+        return addBook;
+    }
+
+    public void setAddBook(AddressBook addBook) {
+        this.addBook = addBook;
+    }
+
     public boolean equals(BuddyInfo buddy) {
         if(buddy == null) return false;
         if(buddy == this) return true;
@@ -46,7 +82,7 @@ public class BuddyInfo {
     }
 
     public String toString() {
-        return "{Name: " + this.name + ", Phone: " + this.phone + ", Address: " + this.address + "}";
+        return "{ID: " + this.id + "Name: " + this.name + ", Phone: " + this.phone + ", Address: " + this.address + "}";
     }
 
 }

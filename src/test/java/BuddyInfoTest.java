@@ -1,15 +1,18 @@
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import static org.junit.Assert.*;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BuddyInfoTest {
 
     private BuddyInfo buddy;
 
     @Before
     public void setUp() {
-        buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333");
+        buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0, new AddressBook());
     }
 
     @Test
@@ -47,7 +50,7 @@ public class BuddyInfoTest {
 
     @Test
     public void testEquals() {
-        BuddyInfo buddy2 = new BuddyInfo("Bob", "hello drive", "613-234-3333");
+        BuddyInfo buddy2 = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0, new AddressBook());
         assertTrue(buddy.equals(buddy2));
     }
 }

@@ -12,10 +12,10 @@ public class AddressBookTest {
 
     @Before
     public void setUp() {
-        buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333");
-        buddy2 = new BuddyInfo("Bill", "bye drive", "613-987-2222");
-
         addy = new AddressBook();
+        buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0, addy);
+        buddy2 = new BuddyInfo("Bill", "bye drive", "613-987-2222", 1, addy);
+
         addy.addBuddy(buddy);
         addy.addBuddy(buddy2);
 
@@ -24,14 +24,14 @@ public class AddressBookTest {
     @Test
     public void addBuddy() {
         int initSize = addy.getBuddies().size();
-        addy.addBuddy(new BuddyInfo("Brian", "allo drive", "613-182-4221"));
+        addy.addBuddy(new BuddyInfo("Brian", "allo drive", "613-182-4221", 2, addy));
         assertEquals(initSize + 1, addy.getBuddies().size());
     }
 
     @Test
     public void removeBuddy() {
         int initSize = addy.getBuddies().size();
-        addy.removeBuddy(0);
+        addy.removeBuddy(buddy);
         assertEquals(initSize - 1, addy.getBuddies().size());
     }
 }
