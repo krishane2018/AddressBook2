@@ -1,15 +1,15 @@
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 
 @Entity
 public class AddressBook  {
 
+    @Id
+    @GeneratedValue
     private int id;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
     private Collection<BuddyInfo> bis;
 
     public AddressBook(int id) {
@@ -33,8 +33,6 @@ public class AddressBook  {
         }
     }
 
-    @Id
-    @GeneratedValue
     public int getId() {
         return id;
     }
@@ -43,7 +41,6 @@ public class AddressBook  {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "addBook")
     public Collection<BuddyInfo> getBuddies() {
         return bis;
     }
@@ -59,9 +56,9 @@ public class AddressBook  {
     public static void main(String args[]) {
         AddressBook addy = new AddressBook();
 
-        BuddyInfo buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0, addy);
-        BuddyInfo buddy2 = new BuddyInfo("Bill", "bye drive", "613-987-2222", 0, addy);
-        BuddyInfo buddy3 = new BuddyInfo("Brian", "allo drive", "613-182-4221", 0, addy);
+        BuddyInfo buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0);
+        BuddyInfo buddy2 = new BuddyInfo("Bill", "bye drive", "613-987-2222", 0);
+        BuddyInfo buddy3 = new BuddyInfo("Brian", "allo drive", "613-182-4221", 0);
 
 		addy.addBuddy(buddy);
         addy.addBuddy(buddy2);

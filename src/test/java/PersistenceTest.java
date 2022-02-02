@@ -18,8 +18,8 @@ public class PersistenceTest {
     @Before
     public void setUp() {
         addy = new AddressBook();
-        buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0, addy);
-        buddy2 = new BuddyInfo("Bill", "bye drive", "613-987-2222", 1, addy);
+        buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0);
+        buddy2 = new BuddyInfo("Bill", "bye drive", "613-987-2222", 1);
     }
 
     @Test

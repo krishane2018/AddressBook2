@@ -12,7 +12,7 @@ public class BuddyInfoTest {
 
     @Before
     public void setUp() {
-        buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0, new AddressBook());
+        buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class BuddyInfoTest {
 
     @Test
     public void testEquals() {
-        BuddyInfo buddy2 = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0, new AddressBook());
+        BuddyInfo buddy2 = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0);
         assertTrue(buddy.equals(buddy2));
     }
 }
