@@ -31,7 +31,7 @@ public class AddressBookTest {
     @Test
     public void removeBuddy() {
         int initSize = addy.getBuddies().size();
-        addy.removeBuddy(buddy);
+        addy.removeBuddy(0);
         assertEquals(initSize - 1, addy.getBuddies().size());
     }
 }

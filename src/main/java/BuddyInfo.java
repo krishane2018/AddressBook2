@@ -70,7 +70,7 @@ public class BuddyInfo {
     }
 
     public String toString() {
-        return "{ID: " + this.id + "Name: " + this.name + ", Phone: " + this.phone + ", Address: " + this.address + "}";
+        return "{Name: " + this.name + ", Phone: " + this.phone + ", Address: " + this.address + "}";
     }
 
 }

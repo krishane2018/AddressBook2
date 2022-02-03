@@ -1,19 +1,23 @@
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.event.ListDataListener;
 
 @Entity
-public class AddressBook  {
+public class AddressBook extends DefaultListModel {
 
     @Id
     @GeneratedValue
     private int id;
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    private Collection<BuddyInfo> bis;
+    private List<BuddyInfo> bis;
 
     public AddressBook(int id) {
-        bis = new HashSet<>();
+        bis = new ArrayList<>();
         this.id = id;
     }
 
@@ -21,15 +25,22 @@ public class AddressBook  {
         this(0);
     }
 
+    public void clear() {
+        bis.clear();
+        super.clear();
+    }
+
     public void addBuddy(BuddyInfo bud) {
         if (bud != null) {
             bis.add(bud);
+            super.addElement(bud);
         }
     }
 
-    public void removeBuddy(BuddyInfo bud) {
-        if (bud != null) {
-            bis.remove(bud);
+    public void removeBuddy(int index) {
+        if (index >= 0 && index < super.size()) {
+            bis.remove(index);
+            super.remove(index);
         }
     }
 
@@ -45,12 +56,16 @@ public class AddressBook  {
         return bis;
     }
 
-    public void setBuddies(Collection<BuddyInfo> bis) {
+    public void setBuddies(List<BuddyInfo> bis) {
         this.bis = bis;
     }
 
     public String toString() {
         return bis.toString();
+    }
+
+    public void addListener(ListDataListener l) {
+        super.addListDataListener(l);
     }
 
     public static void main(String args[]) {
