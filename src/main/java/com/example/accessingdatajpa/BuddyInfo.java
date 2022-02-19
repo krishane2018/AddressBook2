@@ -1,11 +1,13 @@
+package com.example.accessingdatajpa;
+
 import javax.persistence.*;
 
 @Entity
 public class BuddyInfo {
 
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String name;
 
@@ -13,17 +15,20 @@ public class BuddyInfo {
 
     private String phone;
 
+    @ManyToOne
+    @JoinColumn(name = "addressbookId")
+    private AddressBook addressBook;
+
     /* Constructor
      */
-    public BuddyInfo(String name, String address, String phone, int id) {
+    public BuddyInfo(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.id = id;
     }
 
     public BuddyInfo() {
-        this("", "", "", 0);
+        this("", "", "");
     }
 
     public String getName() {
@@ -50,12 +55,16 @@ public class BuddyInfo {
         this.phone = phone;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setAddressBook(AddressBook addressBook) {
+        this.addressBook = addressBook;
     }
 
     public boolean equals(BuddyInfo buddy) {

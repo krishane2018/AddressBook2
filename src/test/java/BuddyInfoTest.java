@@ -1,3 +1,4 @@
+import com.example.accessingdatajpa.BuddyInfo;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -12,7 +13,7 @@ public class BuddyInfoTest {
 
     @Before
     public void setUp() {
-        buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0);
+        buddy = new BuddyInfo("Bob", "hello drive", "613-234-3333");
     }
 
     @Test
@@ -50,7 +51,7 @@ public class BuddyInfoTest {
 
     @Test
     public void testEquals() {
-        BuddyInfo buddy2 = new BuddyInfo("Bob", "hello drive", "613-234-3333", 0);
+        BuddyInfo buddy2 = new BuddyInfo("Bob", "hello drive", "613-234-3333");
         assertTrue(buddy.equals(buddy2));
     }
 }
